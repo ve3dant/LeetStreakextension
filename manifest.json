@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "LeetStreak - Daily Target & Fire Level",
+  "version": "1.0.0",
+  "description": "Minimal daily target tracker with Fire Level & streak motivation for LeetCode beginners.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_popup": "popup/popup.html",
+    "default_title": "LeetStreak"
+  },
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "*://*.leetcode.com/*"
+  ],
+  "background": {
+    "scripts": [
+      "utils/storage.js",
+      "background/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.leetcode.com/*"
+      ],
+      "js": [
+        "utils/storage.js",
+        "utils/quotes.js",
+        "utils/sound.js",
+        "content/confetti.js",
+        "content/content.js"
+      ],
+      "css": [
+        "content/content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*"
+      ],
+      "matches": [
+        "*://*.leetcode.com/*"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "leetstreak@antigravity.extension",
+      "strict_min_version": "109.0"
+    }
+  }
+}

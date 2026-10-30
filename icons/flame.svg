@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <defs>
+    <linearGradient id="flame-outer" x1="12" y1="2" x2="12" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF4500" />
+      <stop offset="60%" stop-color="#FF8C00" />
+      <stop offset="100%" stop-color="#FFA500" />
+    </linearGradient>
+    <linearGradient id="flame-inner" x1="12" y1="8" x2="12" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFD700" />
+      <stop offset="100%" stop-color="#FFF59D" />
+    </linearGradient>
+    <filter id="flame-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <path class="flame-outer-path" d="M12 2C10.5 4.5 9 6.5 9 9C9 9.8 9.2 10.5 9.5 11.2C8.3 10.4 7.5 9 7.5 7.5C5.3 9.3 4 12.1 4 15C4 19.4 7.6 23 12 23C16.4 23 20 19.4 20 15C20 11.2 17.5 7.8 14.5 6.2C14.8 7.3 14.7 8.5 14.1 9.4C13.6 7 13.2 4.6 12 2Z" fill="url(#flame-outer)" filter="url(#flame-glow)" />
+  <path class="flame-inner-path" d="M12 11C10.8 12.5 10 14 10 15.5C10 16.6 10.9 17.5 12 17.5C13.1 17.5 14 16.6 14 15.5C14 13.8 13 12.2 12 11Z" fill="url(#flame-inner)" />
+</svg>

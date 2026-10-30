@@ -1,0 +1,385 @@
+/**
+ * LeetStreak - Floating Motivational Widget Styles
+ * Sleek, minimal, LeetCode-matching dark theme with fire animations
+ */
+
+#leetstreak-root {
+  position: fixed;
+  z-index: 999990;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #eff1f6;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+#leetstreak-root *,
+#leetstreak-root *::before,
+#leetstreak-root *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Collapsed View (Floating Flame Badge)
+   ========================================================================== */
+
+.leetstreak-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(26, 26, 26, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 6px 12px 6px 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 140, 0, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leetstreak-badge:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(255, 161, 22, 0.5);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 161, 22, 0.4);
+}
+
+.leetstreak-badge-flame {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 4px var(--flame-glow-color, rgba(255, 140, 0, 0.5)));
+}
+
+.leetstreak-badge-streak {
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+
+.leetstreak-badge-target-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: #a1a1aa;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.leetstreak-badge-target-count.ignited {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.15);
+}
+
+/* ==========================================================================
+   Expanded Card View
+   ========================================================================== */
+
+.leetstreak-card {
+  width: 270px;
+  background: rgba(26, 26, 26, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), 0 0 1px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.leetstreak-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Header & Drag Handle */
+.leetstreak-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: grab;
+}
+
+.leetstreak-header:active {
+  cursor: grabbing;
+}
+
+.leetstreak-level-info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.leetstreak-flame-wrapper {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leetstreak-flame-icon {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+/* Ignited Pulsing Animation */
+.leetstreak-flame-wrapper.ignited .leetstreak-flame-icon {
+  animation: leetstreak-pulse-flame 2s infinite alternate ease-in-out;
+  filter: drop-shadow(0 0 8px var(--flame-glow-color, rgba(255, 140, 0, 0.8)));
+}
+
+@keyframes leetstreak-pulse-flame {
+  0% {
+    transform: scale(1) rotate(-1deg);
+  }
+  50% {
+    transform: scale(1.12) rotate(2deg);
+  }
+  100% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+}
+
+.leetstreak-level-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.leetstreak-level-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--flame-color, #ffa116);
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+}
+
+.leetstreak-streak-badge {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.leetstreak-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.leetstreak-icon-btn {
+  background: transparent;
+  border: none;
+  color: #71717a;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.leetstreak-icon-btn:hover {
+  color: #f4f4f5;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Body / Progress Section */
+.leetstreak-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leetstreak-progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leetstreak-target-label {
+  font-size: 11px;
+  color: #a1a1aa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.leetstreak-target-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.leetstreak-count-display {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.leetstreak-count-display .highlight {
+  color: var(--flame-color, #ffa116);
+}
+
+/* Quick Adjust Buttons (+ / -) */
+.leetstreak-counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 1px;
+}
+
+.leetstreak-ctrl-btn {
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.leetstreak-ctrl-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.leetstreak-ctrl-btn:active {
+  transform: scale(0.92);
+}
+
+/* Progress Bar */
+.leetstreak-bar-container {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.leetstreak-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff8c00, var(--flame-color, #ff5722));
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leetstreak-bar-fill.ignited {
+  background: linear-gradient(90deg, #ff8c00, #ff3d00, #ffd700);
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.8);
+}
+
+/* Motivational Micro-quote */
+.leetstreak-quote-container {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid var(--flame-color, #ffa116);
+  border-radius: 0 6px 6px 0;
+  padding: 7px 9px;
+  font-size: 11px;
+  color: #d4d4d8;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  line-height: 1.35;
+}
+
+.leetstreak-quote-container:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Footer / Quick Target Switcher */
+.leetstreak-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 11px;
+  color: #71717a;
+}
+
+.leetstreak-target-switcher {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.leetstreak-target-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #a1a1aa;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.leetstreak-target-chip:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.leetstreak-target-chip.active {
+  background: rgba(255, 161, 22, 0.2);
+  border-color: #ffa116;
+  color: #ffa116;
+}
+
+/* Notification banner on solve */
+.leetstreak-toast {
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #18181b;
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: leetstreak-toast-in-out 3s forwards ease-in-out;
+}
+
+@keyframes leetstreak-toast-in-out {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 6px);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -6px);
+  }
+}

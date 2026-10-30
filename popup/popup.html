@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeetStreak</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Top Brand & Fire Level Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="flame-icon-box" id="header-flame-box">
+          <svg class="flame-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="svg-outer-flame" d="M12 2C10.5 4.5 9 6.5 9 9C9 9.8 9.2 10.5 9.5 11.2C8.3 10.4 7.5 9 7.5 7.5C5.3 9.3 4 12.1 4 15C4 19.4 7.6 23 12 23C16.4 23 20 19.4 20 15C20 11.2 17.5 7.8 14.5 6.2C14.8 7.3 14.7 8.5 14.1 9.4C13.6 7 13.2 4.6 12 2Z" fill="#ff5722"/>
+            <path id="svg-inner-flame" d="M12 11C10.8 12.5 10 14 10 15.5C10 16.6 10.9 17.5 12 17.5C13.1 17.5 14 16.6 14 15.5C14 13.8 13 12.2 12 11Z" fill="#fff59d"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="app-title">LeetStreak</h1>
+          <span class="level-indicator" id="fire-level-badge">Spark</span>
+        </div>
+      </div>
+      <div class="streak-pill" id="current-streak-pill">
+        <span class="streak-count" id="current-streak-count">0</span>
+        <span class="streak-label">Days</span>
+      </div>
+    </header>
+
+    <!-- Main Daily Progress Card -->
+    <section class="card progress-card">
+      <div class="card-row">
+        <span class="card-label">TODAY'S TARGET</span>
+        <div class="counter-group">
+          <button class="btn-step" id="btn-dec" title="Minus 1">-</button>
+          <span class="progress-ratio">
+            <span class="highlight" id="today-solved-num">0</span> / <span id="daily-target-num">1</span>
+          </span>
+          <button class="btn-step" id="btn-inc" title="Add 1">+</button>
+        </div>
+      </div>
+
+      <!-- Animated Progress Bar -->
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+      </div>
+
+      <div class="status-message" id="target-status-msg">
+        Solve 1 problem to ignite today's fire!
+      </div>
+    </section>
+
+    <!-- Target Customizer (Default 1, customizable 2, 3...) -->
+    <section class="card target-settings-card">
+      <div class="target-select-header">
+        <span class="card-label">SET DAILY TARGET</span>
+        <span class="target-subtext">Aim for consistency</span>
+      </div>
+      <div class="target-options">
+        <button class="btn-target" data-target="1">1 (Default)</button>
+        <button class="btn-target" data-target="2">2</button>
+        <button class="btn-target" data-target="3">3</button>
+        <button class="btn-target" data-target="5">5</button>
+      </div>
+    </section>
+
+    <!-- Streak & Fire Level Details -->
+    <section class="stats-row">
+      <div class="stat-box">
+        <span class="stat-val" id="best-streak-num">0</span>
+        <span class="stat-lbl">Best Streak</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-val" id="total-solved-num">0</span>
+        <span class="stat-lbl">Total Solved</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-val" id="fire-level-number">Lvl 0</span>
+        <span class="stat-lbl">Fire Level</span>
+      </div>
+    </section>
+
+    <!-- Beginner Motivational Advice -->
+    <div class="quote-card" id="quote-card">
+      <p id="quote-text">Small steps every day compound into huge leaps.</p>
+    </div>
+
+    <!-- Collapsible Settings & Preferences -->
+    <details class="settings-details">
+      <summary class="settings-summary">Preferences & Options</summary>
+      <div class="settings-content">
+        <label class="setting-toggle">
+          <span>Show floating widget on LeetCode</span>
+          <input type="checkbox" id="toggle-widget" checked>
+          <span class="toggle-slider"></span>
+        </label>
+        <label class="setting-toggle">
+          <span>Auto-detect submissions</span>
+          <input type="checkbox" id="toggle-auto" checked>
+          <span class="toggle-slider"></span>
+        </label>
+        <label class="setting-toggle">
+          <span>Celebration Confetti</span>
+          <input type="checkbox" id="toggle-confetti" checked>
+          <span class="toggle-slider"></span>
+        </label>
+        <label class="setting-toggle">
+          <span>Celebration Sound</span>
+          <input type="checkbox" id="toggle-sound" checked>
+          <span class="toggle-slider"></span>
+        </label>
+        <div class="danger-zone">
+          <button class="btn-reset" id="btn-reset-streak">Reset Streak</button>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <script src="../utils/storage.js"></script>
+  <script src="../utils/quotes.js"></script>
+  <script src="../utils/sound.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
